@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('graph_answers', function (Blueprint $table) {
+        Schema::create('open_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('answer');
+            $table->text('answer');
 
             $table->index(['question_id']);
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('graph_answers');
+        Schema::dropIfExists('open_answers');
     }
 };

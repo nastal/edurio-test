@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Contexts\Answer\Domain\Models\GraphAnswer;
+use App\Contexts\Answer\Domain\Models\OpenAnswer;
 use App\Contexts\Question\Domain\Models\Question;
 use App\Contexts\Question\Domain\Models\QuestionType;
 use Illuminate\Database\Seeder;
@@ -26,14 +27,12 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        /*     ->each(function ($question) {
-             GraphAnswer::factory()->create([
-                 'answer' => rand(0, 5)
-             ]);
-         });*/
+        $questionsOpen = Question::factory()->create([
+                'type' => QuestionType::Open->value
+            ]);
 
-        /*Question::factory()->count(1)->create([
-            'type' => QuestionType::Open->value
-        ]);*/
+        OpenAnswer::factory(100)->create([
+            'question_id' => $questionsOpen->id
+        ]);
     }
 }
