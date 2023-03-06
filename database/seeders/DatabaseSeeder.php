@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $questions->each(function ($question) {
-            GraphAnswer::factory(100)->create([
+            GraphAnswer::factory(100000)->create([
                 'question_id' => $question->id
             ]);
         });
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'type' => QuestionType::Open->value
             ]);
 
-        OpenAnswer::factory(100)->create([
+        OpenAnswer::factory(100000)->create([
             'question_id' => $questionsOpen->id
         ]);
     }
