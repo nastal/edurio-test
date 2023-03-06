@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('answer');
 
             $table->index(['question_id']);
+            $table->fullText(['answer']);
         });
     }
 
