@@ -2,8 +2,8 @@
 
 namespace App\Contexts\Answer\Domain\Models;
 
+use App\Contexts\Answer\Domain\Events\OpenAnswerCreated;
 use App\Contexts\Question\Domain\Models\Question;
-use Database\Factories\GraphAnswerFactory;
 use Database\Factories\OpenAnswerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +15,10 @@ class OpenAnswer extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $dispatchesEvents = [
+        'saved' => OpenAnswerCreated::class,
+    ];
 
     protected static function newFactory(): Factory
     {
