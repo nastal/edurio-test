@@ -29,7 +29,7 @@ class QuestionFactory extends Factory
     {
 
         return QuestionData::from([
-            'title' => fake()->title,
+            'title' => fake()->sentence(2),
             'type' => self::TYPES[rand(0, 1)]
         ])->toArray();
     }

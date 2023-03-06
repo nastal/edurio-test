@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Contexts\Answer\Domain\Models\GraphAnswer;
+use App\Contexts\Question\Domain\Models\Question;
+use App\Contexts\Question\Domain\Models\QuestionType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $questions = Question::factory()
+            ->count(9)->create([
+                'type' => QuestionType::Graph->value
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $questions->each(function ($question) {
+            GraphAnswer::factory(100)->create([
+                'question_id' => $question->id
+            ]);
+        });
+
+        /*     ->each(function ($question) {
+             GraphAnswer::factory()->create([
+                 'answer' => rand(0, 5)
+             ]);
+         });*/
+
+        /*Question::factory()->count(1)->create([
+            'type' => QuestionType::Open->value
+        ]);*/
     }
 }
