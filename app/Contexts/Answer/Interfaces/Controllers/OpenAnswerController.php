@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Contexts\Answer\AppLayer\Controllers;
+namespace app\Contexts\Answer\Interfaces\Controllers;
 
 use App\Contexts\Answer\Domain\Models\OpenAnswer;
 use App\Http\Controllers\Controller;

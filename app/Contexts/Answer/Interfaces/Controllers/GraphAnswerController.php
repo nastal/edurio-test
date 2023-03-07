@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Contexts\Answer\AppLayer\Controllers;
+namespace app\Contexts\Answer\Interfaces\Controllers;
 
 use app\Contexts\Answer\Domain\Models\GraphAnswer;
 use App\Http\Controllers\Controller;

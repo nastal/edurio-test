@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contexts\Answer\Domain\DTO;
+namespace app\Contexts\WordStat\Domain\DTO;
 
 use App\Contexts\Answer\Domain\Models\OpenAnswer;
 use app\Contexts\Question\Domain\Models\Question;

@@ -3,9 +3,7 @@
 namespace App\Providers;
 
 use App\Contexts\Answer\Domain\Events\OpenAnswerCreated;
-use App\Contexts\Answer\Domain\Observers\CreateWordStat;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Contexts\WordStat\AppLayer\Handlers\CreateWordStatHandler;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -16,13 +14,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
         OpenAnswerCreated::class => [
-            CreateWordStat::class,
-        ],
-
+            CreateWordStatHandler::class
+        ]
     ];
 
     /**
