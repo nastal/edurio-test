@@ -7,7 +7,9 @@ use App\Contexts\Answer\Domain\Models\GraphAnswer;
 use App\Contexts\Answer\Domain\Models\OpenAnswer;
 use App\Contexts\Question\Domain\Models\Question;
 use App\Contexts\Question\Domain\Models\QuestionType;
+use App\Contexts\WordStat\AppLayer\Command\PersistWordStatsCommand;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {

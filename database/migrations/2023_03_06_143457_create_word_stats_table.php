@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('word', 80);
             $table->unsignedInteger('count')->default(0);
-            $table->json('stats');
-
+            //fixme we can use a json column here to add some meta data
             $table->index(['word']);
         });
     }

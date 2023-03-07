@@ -30,7 +30,9 @@ class CreateWordStatHandler implements ShouldQueue
         $words = $this->getWords($event->answer->answer);
 
         try {
+            //fixme batch strategy
             $this->service->fullFillWord($words, $event->answer->id);
+
         } catch (\Exception $e) {
             Log::info('WordStat exception in handler : ' . $e->getMessage() . '');
         }

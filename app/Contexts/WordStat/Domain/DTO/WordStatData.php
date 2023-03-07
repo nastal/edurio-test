@@ -13,8 +13,6 @@ class WordStatData extends Data
         #[Max(80)]
         public string $word,
         public int $count,
-        #[DataCollectionOf(WordStatNestedValue::class)]
-        public DataCollection $stats,
     ) {
     }
 }
