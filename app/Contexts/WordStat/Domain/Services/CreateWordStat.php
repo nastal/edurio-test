@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Contexts\Answer\Domain\Observers;
+namespace App\Contexts\WordStat\Domain\Services;
 
-use App\Contexts\Answer\Domain\Models\OpenAnswer;
+use App\Contexts\WordStat\Infrastructure\WordStatRepository;
 use Illuminate\Support\Facades\Log;
 
 class CreateWordStat
 {
 
-    /**
-     * Handle the event.
-     */
-    public function __invoke(OpenAnswer $openAnswer): void
+    public function __construct(private readonly WordStatRepository $repository)
     {
-        Log::info('CreateWordStat observer called');
     }
+
+    public function fullFillWord(array $wordArray, int $answerId): void
+    {
+        $this->repository->fulFillWord($wordArray, $answerId);
+    }
+
 }

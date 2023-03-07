@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $questions = Question::factory()
+        /*$questions = Question::factory()
             ->count(9)->create([
                 'type' => QuestionType::Graph->value
         ]);
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             GraphAnswer::factory(100000)->create([
                 'question_id' => $question->id
             ]);
-        });
+        });*/
 
         $questionsOpen = Question::factory()->create([
                 'type' => QuestionType::Open->value

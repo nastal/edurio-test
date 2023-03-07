@@ -2,28 +2,48 @@
 
 namespace App\Contexts\WordStat\Infrastructure;
 
-use app\Contexts\WordStat\Domain\DTO\WordStatData;
-use app\Contexts\WordStat\Domain\Interfaces\WordStatRepositoryInterface;
-use app\Contexts\WordStat\Domain\Models\WordStats;
+use App\Contexts\WordStat\Domain\DTO\WordStatNestedValue;
+use App\Contexts\WordStat\Domain\Interfaces\WordStatRepositoryInterface;
+use App\Contexts\WordStat\Domain\Models\WordStats;
+use Illuminate\Support\Facades\DB;
 
 class WordStatRepository implements WordStatRepositoryInterface
 {
-    public function findByWord(string $word): ?WordStatData
+    public function fulFillWord(array $wordArray, int $answerId): void
     {
-        //fixme implement
-        return WordStatData::fromModel(WordStats::where('word', $word)->first());
-    }
 
-    public function create(WordStatData $wordStatData): void
-    {
-        //fixme implement
-        WordStats::create($wordStatData->toArray());
-    }
+        DB::transaction(function () {
+            foreach ($wordArray as $valueWord) {
+                $word = WordStats::firstOrNew(['word' => $valueWord]);
 
-    public function update(WordStatData $wordStatData): void
-    {
-        //fixme implement
-        WordStats::where('word', $wordStatData->word)->update($wordStatData->toArray());
-    }
+                if (!$word->exists) {
+                    $word->count = 1;
+                    $word->stats = [
+                        WordStatNestedValue::from(
+                            ['answer_id' => $answerId, 'count' => 1]
+                        )
+                    ];
+                } else {
 
+                    $word->count = $word->count + 1;
+                    $exists = false;
+                    foreach ($word->stats as $stat) {
+                        if ($stat->answer_id === $answerId) {
+                            $stat->count = $stat->count + 1;
+                            $exists = true;
+                        }
+                    }
+
+                    if (!$exists) {
+                        $word->stats[] = WordStatNestedValue::from(
+                            ['answer_id' => $answerId, 'count' => 1]
+                        );
+                    }
+                }
+
+                $word->save();
+            }
+        }, 5);
+
+    }
 }
