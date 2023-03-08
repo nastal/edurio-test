@@ -15,7 +15,7 @@ use Tests\TestCase;
 class WordStatTest extends TestCase
 {
 
-    //use DatabaseTransactions;
+    use DatabaseTransactions;
     /**
      * A basic feature test example.
      */

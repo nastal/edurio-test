@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Contexts\Answer\Domain\Models\GraphAnswer;
 use App\Contexts\WordStat\AppLayer\Command\RebuildWordStatsCommand;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Contexts\Answer\Domain\Models\OpenAnswer;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*$questions = Question::factory()
+        $questions = Question::factory()
             ->count(9)->create([
                 'type' => QuestionType::Graph->value
         ]);
@@ -28,13 +29,13 @@ class DatabaseSeeder extends Seeder
             GraphAnswer::factory(100000)->create([
                 'question_id' => $question->id
             ]);
-        });*/
+        });
 
         $questionsOpen = Question::factory()->create([
                 'type' => QuestionType::Open->value
             ]);
 
-        OpenAnswer::factory(10000)->create([
+        OpenAnswer::factory(100000)->create([
             'question_id' => $questionsOpen->id
         ]);
 

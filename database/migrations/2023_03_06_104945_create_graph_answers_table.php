@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained()->cascadeOnDelete();
             $table->unsignedTinyInteger('answer');
 
-            $table->index(['question_id']);
+            $table->index(['question_id', 'answer'], 'idx_question_answer'); // Adding index
         });
     }
 
