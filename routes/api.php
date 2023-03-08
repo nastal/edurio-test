@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/answer-avarage', [GraphAnswerController::class, 'getAllAnswerGraphAvg'])->name('answer.avg');
+Route::get('/graph/answer-avarage', [GraphAnswerController::class, 'getAllAnswerGraphAvg'])->name('answer.avg');
+Route::get('/graph/answer-count', [GraphAnswerController::class, 'getAllAnswerGraphCount'])->name('answer.avg');
