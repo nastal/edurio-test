@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Contexts\Answer\AppLayer\Commands\CreateGraphAnswerCommand;
+use App\Contexts\Answer\AppLayer\Commands\CreateOpenAnswerCommand;
 use App\Contexts\Question\AppLayer\Commands\CreateQuestionCommand;
 use App\Contexts\WordStat\AppLayer\Command\PersistWordStatsCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         PersistWordStatsCommand::class,
         CreateQuestionCommand::class,
-        CreateGraphAnswerCommand::class
+        CreateGraphAnswerCommand::class,
+        CreateOpenAnswerCommand::class
     ];
     /**
      * Define the application's command schedule.
