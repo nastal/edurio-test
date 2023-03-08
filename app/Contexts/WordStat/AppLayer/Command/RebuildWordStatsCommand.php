@@ -2,7 +2,7 @@
 
 namespace App\Contexts\WordStat\AppLayer\Command;
 
-use App\Contexts\WordStat\AppLayer\Handlers\PersistWordStatsHandler;
+use App\Contexts\WordStat\AppLayer\Handlers\RebuildWordStatsHandler;
 use Illuminate\Console\Command;
 
 class RebuildWordStatsCommand extends Command
@@ -24,9 +24,8 @@ class RebuildWordStatsCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(PersistWordStatsHandler $handler): void
+    public function handle(): void
     {
-        //fixme recreate the word stats table
-        //$handler::dispatch();
+        RebuildWordStatsHandler::dispatchSync();
     }
 }

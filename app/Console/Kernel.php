@@ -6,6 +6,7 @@ use App\Contexts\Answer\AppLayer\Commands\CreateGraphAnswerCommand;
 use App\Contexts\Answer\AppLayer\Commands\CreateOpenAnswerCommand;
 use App\Contexts\Question\AppLayer\Commands\CreateQuestionCommand;
 use App\Contexts\WordStat\AppLayer\Command\PersistWordStatsCommand;
+use App\Contexts\WordStat\AppLayer\Command\RebuildWordStatsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
         PersistWordStatsCommand::class,
         CreateQuestionCommand::class,
         CreateGraphAnswerCommand::class,
-        CreateOpenAnswerCommand::class
+        CreateOpenAnswerCommand::class,
+        RebuildWordStatsCommand::class,
     ];
     /**
      * Define the application's command schedule.

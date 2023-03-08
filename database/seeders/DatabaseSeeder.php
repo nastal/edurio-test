@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Contexts\Answer\Domain\Models\GraphAnswer;
+use App\Contexts\WordStat\AppLayer\Command\RebuildWordStatsCommand;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Contexts\Answer\Domain\Models\OpenAnswer;
 use App\Contexts\Question\Domain\Models\Question;
 use App\Contexts\Question\Domain\Models\QuestionType;
-use App\Contexts\WordStat\AppLayer\Command\PersistWordStatsCommand;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
+
+    use WithoutModelEvents;
     /**
      * Seed the application's database.
      */
@@ -33,8 +34,10 @@ class DatabaseSeeder extends Seeder
                 'type' => QuestionType::Open->value
             ]);
 
-        OpenAnswer::factory(100000)->create([
+        OpenAnswer::factory(10000)->create([
             'question_id' => $questionsOpen->id
         ]);
+
+        Artisan::call(RebuildWordStatsCommand::class);
     }
 }
