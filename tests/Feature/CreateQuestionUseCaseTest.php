@@ -33,4 +33,23 @@ class CreateQuestionUseCaseTest extends TestCase
             'type'  => $data->type->value,
         ]);
     }
+
+    public function test_createOpenQuestionTest(): void
+    {
+
+        $data = QuestionData::from([
+            'title' => fake()->sentence(5),
+            'type' => QuestionType::Open,
+        ]);
+
+
+        $this->artisan('create:question', [
+            'questionDataString' => $data->toJson()
+        ]);
+
+        $this->assertDatabaseHas('questions', [
+            'title' => $data->title,
+            'type'  => $data->type->value,
+        ]);
+    }
 }
