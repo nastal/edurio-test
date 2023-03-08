@@ -27,28 +27,13 @@ class CreateWordStatHandler implements ShouldQueue
      */
     public function handle(OpenAnswerCreated $event): void
     {
-        $words = $this->getWords($event->answer->answer);
-
-        //fixme batch strategy
-        //truncate and recalculate
-        //stop event propagation
-
-
         try {
 
-            $this->service->fullFillWord($words, $event->answer->id);
+            $this->service->fullFillWord($event->answer->answer, $event->answer->id);
 
         } catch (\Exception $e) {
             Log::info('WordStat exception in handler : ' . $e->getMessage() . '');
         }
     }
 
-    private function getWords(string $answer): array
-    {
-        $rawText = preg_replace("/[^\w\s]/", "", $answer);
-
-        $words = Str::of($rawText)->lower()->split('/\s+/');
-
-        return $words->toArray();
-    }
 }

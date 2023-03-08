@@ -4,6 +4,7 @@ namespace App\Contexts\WordStat\Domain\Services;
 
 use App\Contexts\WordStat\Infrastructure\WordStatCacheRepository;
 use App\Contexts\WordStat\Infrastructure\WordStatRepository;
+use Illuminate\Support\Str;
 
 class CreateWordStat
 {
@@ -13,8 +14,9 @@ class CreateWordStat
     ) {
     }
 
-    public function fullFillWord(array $wordArray, int $answerId): void
+    public function fullFillWord(string $text, int $answerId): void
     {
+        $wordArray = $this->getWordsFromText($text);
         $this->cacheAnswerWords($wordArray, $answerId);
     }
 
@@ -26,6 +28,15 @@ class CreateWordStat
     private function cacheAnswerWords(array $wordArray, int $answerId): void
     {
         $this->cacheRepository->cacheAnswerWords($wordArray, $answerId);
+    }
+
+    private function getWordsFromText(string $text): array
+    {
+        $rawText = preg_replace("/[^\w\s]/", "", $text);
+
+        $words = Str::of($rawText)->lower()->split('/\s+/');
+
+        return $words->toArray();
     }
 
     public function getWordCachedStats(): array
