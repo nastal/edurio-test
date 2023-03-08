@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\DB;
 class GraphAnswerRepository implements GraphAnswerRepositoryInterface
 {
 
-    const ANSWER_AVG = 'graph_answers';
+    const ANSWER_AVG = 'graph_answers_avg';
     const ANSWER_COUNT = 'graph_count';
+
+    const GRAPH_ANSWERS = 'graph_answers';
     public function createGraphAnswer(GraphAnswerData $answerData): int
     {
         $model = new GraphAnswer(['question_id' => $answerData->question_id, 'answer' => $answerData->answer]);
@@ -63,6 +65,17 @@ class GraphAnswerRepository implements GraphAnswerRepositoryInterface
                 ->join($answer->getTable(), $question->getTable() . '.id', '=', $answer->getTable() . '.question_id')
                 ->select($question->getTable() . '.id', DB::raw('COUNT(*) AS answer_count'))
                 ->groupBy($question->getTable() . '.id')
+                ->get()
+                ->toArray();
+        });
+    }
+
+    public function getGraphAnswersByQuestionId(int $questionId) : array
+    {
+        return Cache::tags(self::GRAPH_ANSWERS)->remember('graph_answers_' . $questionId, 3600, function () use ($questionId) {
+            return DB::table('graph_answers')
+                ->select('id', 'answer')
+                ->where('question_id', '=', $questionId)
                 ->get()
                 ->toArray();
         });
