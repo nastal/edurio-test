@@ -12,28 +12,6 @@ class WordStatCacheRepository implements WordStatCacheRepositoryInterface
 {
 
     const WORD_PREFIX = 'word_stats';
-    /**
-     * Warning: Deadlocks on batch processing
-     */
-    public function persistDirectly(array $wordArray, int $answerId): void
-    {
-
-        //fixme answer id is not used
-        DB::transaction(function () use ($wordArray, $answerId) {
-            foreach ($wordArray as $valueWord) {
-                $word = WordStats::firstOrNew(['word' => $valueWord]);
-
-                if (!$word->exists) {
-                    $word->count = 1;
-                } else {
-                    $word->count = $word->count + 1;
-                }
-
-                $word->save();
-            }
-        }, 5);
-
-    }
 
     /**
      * Let's cache it in batch mode
