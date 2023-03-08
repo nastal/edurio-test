@@ -13,4 +13,17 @@ class QuestionData extends Data
         public QuestionType $type,
     ) {
     }
+
+    public static function fromJson(string $data): QuestionData
+    {
+        $data = json_decode($data, true);
+
+        $question = QuestionType::from($data['type']);
+
+        return new self(
+            $data['title'],
+            $question,
+        );
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Contexts\Question\AppLayer\Commands\CreateQuestionCommand;
 use App\Contexts\WordStat\AppLayer\Command\PersistWordStatsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -11,6 +12,7 @@ class Kernel extends ConsoleKernel
 
     protected $commands = [
         PersistWordStatsCommand::class,
+        CreateQuestionCommand::class
     ];
     /**
      * Define the application's command schedule.

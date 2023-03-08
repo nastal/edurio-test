@@ -9,4 +9,7 @@ seed:
 	docker-compose run --rm php-fpm php artisan word-stats:persist
 
 
+test:
+	docker-compose run --rm php-fpm ./vendor/bin/phpunit
+
 
