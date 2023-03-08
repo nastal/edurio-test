@@ -28,7 +28,7 @@ class GraphAnswerRepository implements GraphAnswerRepositoryInterface
         $model = new GraphAnswer();
 
         //Fastest Way around 50ms
-        return Cache::remember(self::ANSWER_AVG, 3600, function () use ($model) {
+        return Cache::tags(self::GRAPH_ANSWERS)->remember(self::ANSWER_AVG, 3600, function () use ($model) {
             return DB::table($model->getTable())
                 ->select('question_id', DB::raw('AVG(answer) as avarage'))
                 ->groupBy('question_id')
@@ -60,7 +60,7 @@ class GraphAnswerRepository implements GraphAnswerRepositoryInterface
         $answer = new GraphAnswer();
         $question = new Question();
 
-        return Cache::remember(self::ANSWER_COUNT, 3600, function () use ($answer, $question) {
+        return Cache::tags(self::GRAPH_ANSWERS)->remember(self::ANSWER_COUNT, 3600, function () use ($answer, $question) {
             return DB::table($question->getTable())
                 ->join($answer->getTable(), $question->getTable() . '.id', '=', $answer->getTable() . '.question_id')
                 ->select($question->getTable() . '.id', DB::raw('COUNT(*) AS answer_count'))
@@ -79,6 +79,11 @@ class GraphAnswerRepository implements GraphAnswerRepositoryInterface
                 ->get()
                 ->toArray();
         });
+    }
+
+    public function flushCache(): void
+    {
+        Cache::tags(self::GRAPH_ANSWERS)->flush();
     }
 
 }
