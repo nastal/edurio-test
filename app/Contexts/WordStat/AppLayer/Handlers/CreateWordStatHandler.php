@@ -29,8 +29,13 @@ class CreateWordStatHandler implements ShouldQueue
     {
         $words = $this->getWords($event->answer->answer);
 
+        //fixme batch strategy
+        //truncate and recalculate
+        //stop event propagation
+
+
         try {
-            //fixme batch strategy
+
             $this->service->fullFillWord($words, $event->answer->id);
 
         } catch (\Exception $e) {

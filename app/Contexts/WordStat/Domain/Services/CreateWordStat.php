@@ -2,39 +2,39 @@
 
 namespace App\Contexts\WordStat\Domain\Services;
 
+use App\Contexts\WordStat\Infrastructure\WordStatCacheRepository;
 use App\Contexts\WordStat\Infrastructure\WordStatRepository;
 
 class CreateWordStat
 {
-
-    public function __construct(private readonly WordStatRepository $repository)
-    {
+    public function __construct(
+        private readonly WordStatRepository $repository,
+        private readonly WordStatCacheRepository $cacheRepository
+    ) {
     }
 
     public function fullFillWord(array $wordArray, int $answerId): void
     {
-        if ($this->repository->batchMode()) {
-            $this->cacheAnswerWords($wordArray, $answerId);
-            //fixme call command to process cache
-            return;
-
-        }
-        $this->repository->persistDirectly($wordArray, $answerId);
+        $this->cacheAnswerWords($wordArray, $answerId);
     }
 
     public function persistWordStats(): void
     {
-        $this->repository->persistWordStats();
+        $this->cacheRepository->persist();
     }
 
     private function cacheAnswerWords(array $wordArray, int $answerId): void
     {
-        $this->repository->cacheAnswerWords($wordArray, $answerId);
+        $this->cacheRepository->cacheAnswerWords($wordArray, $answerId);
     }
 
-    public function batchMode(): bool
+    public function getWordCachedStats(): array
     {
-        return $this->repository->batchMode();
+        return $this->cacheRepository->getCachedWordStats();
     }
 
+    public function getPersistedStats(): array
+    {
+        return $this->repository->getAllWordStats();
+    }
 }
