@@ -2,7 +2,6 @@
 
 namespace App\Contexts\Question\AppLayer\Handlers;
 
-use App\Contexts\Question\AppLayer\Commands\CreateQuestionCommand;
 use App\Contexts\Question\Domain\DTO\QuestionData;
 use App\Contexts\Question\Domain\Services\QuestionService;
 use Illuminate\Foundation\Bus\Dispatchable;
