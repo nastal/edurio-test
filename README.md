@@ -57,3 +57,5 @@ Below are sources with similar approaches, but I'm not guarantee that it's absol
 https://mevelix.com/articles/laravel-cqrs-from-scratch,1
 https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel
 https://lorisleiva.com/conciliating-laravel-and-ddd
+
+p.s. don't forget to clear volumes to free up space after you finish 😇
