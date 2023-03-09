@@ -13,11 +13,12 @@ ensure your local environment has the following installed:
 
 ## Installation
 1. clone the repository
-2. run `make install` from within the project directory
-3. run `make seed` to seed the database with dummy data 
+2. copy .env.example to .env
+3. run `make install` from within the project directory 
+4. run `make test` to run the tests (note, you can run tests without seeding)
+5. run `make seed` to seed the database with dummy data 
 - note: do not interrupt console while seeding. It uses build in laravel factories to seed up to 1M records,
 it may be about 15 minutes to complete.
-4. run `make test` to run the tests
 
 ## Usage
 
