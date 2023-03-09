@@ -30,6 +30,9 @@ This command is used after batch process. As also you can rebuild it at any time
 - `GET http://localhost:47000/api/graph/question-answer/{id}` - Graph question answers by id (todo pagination for large data)
 - `GET http://localhost:47000/api/open/word-stats` - Word cloud (stats)
 
+- `POST http://localhost:47000/api/graph/question-answer { "question_id": 1, "answer": "2" }` - Create graph answer for question
+- `POST http://localhost:47000/api/open/question-answer {"question_id" : 16, "answer": "Lorem ipsum dolor sit amet}` - Create graph answer for question
+
 
 ### Notes
 

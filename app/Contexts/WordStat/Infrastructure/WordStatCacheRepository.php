@@ -44,7 +44,7 @@ class WordStatCacheRepository implements WordStatCacheRepositoryInterface
 
     public function persist(): void
     {
-        $wordStats = Cache::tags(self::WORD_PREFIX)->get(self::WORD_PREFIX);
+        $wordStats = $this->getCachedWordStats();
 
         $collection = collect($wordStats)->map(function ($item, $key) {
             return new WordStatData($key, $item);

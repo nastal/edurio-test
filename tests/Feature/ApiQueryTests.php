@@ -15,9 +15,6 @@ class ApiQueryTests extends TestCase
 {
 
     use DatabaseTransactions;
-    /**
-     * A basic feature test example.
-     */
     public function test_getQuestionAvarage(): void
     {
 
@@ -68,7 +65,7 @@ class ApiQueryTests extends TestCase
     }
 
 
-    public function test_answerPerQuestion()
+    public function test_answerPerQuestion() : void
     {
 
         Question::where('type', QuestionType::Graph->value)->delete();
