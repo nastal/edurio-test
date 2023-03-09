@@ -6,7 +6,7 @@ install:
 
 seed:
 	docker-compose run --rm php-fpm php artisan db:seed
-	docker-compose run --rm php-fpm php artisan word-stats:persist
+	docker-compose run --rm php-fpm php artisan word-stats:rebuild
 
 
 test:

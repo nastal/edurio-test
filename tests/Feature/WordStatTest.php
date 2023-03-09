@@ -25,6 +25,8 @@ class WordStatTest extends TestCase
         //prevent domain events
         Queue::fake();
 
+        OpenAnswer::query()->delete();
+
         $questionsOpen = Question::factory()->create([
             'type' => QuestionType::Open->value
         ]);
