@@ -2,7 +2,7 @@
 
 namespace App\Contexts\Answer\Domain\DTO;
 
-use app\Contexts\Question\Domain\Models\Question;
+use App\Contexts\Question\Domain\Models\Question;
 use Spatie\LaravelData\Attributes\Validation\Exists;
 use Spatie\LaravelData\Attributes\Validation\Size;
 use Spatie\LaravelData\Data;

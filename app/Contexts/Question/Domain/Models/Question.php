@@ -1,10 +1,9 @@
 <?php
 
-namespace app\Contexts\Question\Domain\Models;
+namespace App\Contexts\Question\Domain\Models;
 
 use App\Contexts\Answer\Domain\Models\GraphAnswer;
 use App\Contexts\Question\Domain\DTO\QuestionData;
-use App\Contexts\WordStat\Domain\DTO\WordStatData;
 use Database\Factories\QuestionFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

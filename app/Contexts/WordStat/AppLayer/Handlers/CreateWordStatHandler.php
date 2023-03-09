@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Contexts\WordStat\AppLayer\Handlers;
+namespace App\Contexts\WordStat\AppLayer\Handlers;
 
 
 use App\Contexts\Answer\Domain\Events\OpenAnswerCreated;

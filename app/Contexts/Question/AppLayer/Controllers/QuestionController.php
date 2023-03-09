@@ -4,7 +4,7 @@ namespace App\Contexts\Question\AppLayer\Controllers;
 
 use app\Contexts\Question\AppLayer\Requests\StoreQuestionRequest;
 use app\Contexts\Question\AppLayer\Requests\UpdateQuestionRequest;
-use app\Contexts\Question\Domain\Models\Question;
+use App\Contexts\Question\Domain\Models\Question;
 use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller

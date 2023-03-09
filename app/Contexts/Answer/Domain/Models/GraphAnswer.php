@@ -4,7 +4,7 @@ namespace App\Contexts\Answer\Domain\Models;
 
 use App\Contexts\Answer\Domain\DTO\GraphAnswerData;
 use App\Contexts\Answer\Domain\Events\GraphAnswerCreated;
-use app\Contexts\Question\Domain\Models\Question;
+use App\Contexts\Question\Domain\Models\Question;
 use Database\Factories\GraphAnswerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
