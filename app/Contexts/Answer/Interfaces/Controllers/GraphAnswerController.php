@@ -3,7 +3,7 @@
 namespace App\Contexts\Answer\Interfaces\Controllers;
 
 use App\Contexts\Answer\AppLayer\Commands\CreateGraphAnswerCommand;
-use App\Contexts\Answer\AppLayer\Query\AnswerAvarageFinder;
+use App\Contexts\Answer\AppLayer\Query\AnswerAverageFinder;
 use App\Contexts\Answer\AppLayer\Query\AnswerCountFinder;
 use App\Contexts\Answer\AppLayer\Query\AnswerPerQuestionFinder;
 use App\Contexts\Answer\Interfaces\Requests\StoreGraphAnswerRequest;
@@ -16,8 +16,8 @@ class GraphAnswerController extends Controller
 {
 
     public function __construct(
-        private readonly AnswerAvarageFinder $answerAvarageFinder,
-        private readonly AnswerCountFinder $answerCountFinder,
+        private readonly AnswerAverageFinder     $answerAverageFinder,
+        private readonly AnswerCountFinder       $answerCountFinder,
         private readonly AnswerPerQuestionFinder $answerPerQuestionFinder,
     ) {
     }
@@ -26,7 +26,7 @@ class GraphAnswerController extends Controller
      */
     public function getAllAnswerGraphAvg(): array
     {
-        return $this->answerAvarageFinder->execute();
+        return $this->answerAverageFinder->execute();
     }
 
     public function getAllAnswerGraphCount(): array

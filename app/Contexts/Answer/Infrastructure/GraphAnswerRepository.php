@@ -23,14 +23,14 @@ class GraphAnswerRepository implements GraphAnswerRepositoryInterface
         return $model->id;
     }
 
-    public function getAllGraphAnswersAvarage() : array
+    public function getAllGraphAnswersAverage() : array
     {
         $model = new GraphAnswer();
 
         //Fastest Way around 50ms
         return Cache::tags(self::GRAPH_ANSWERS)->remember(self::ANSWER_AVG, 3600, function () use ($model) {
             return DB::table($model->getTable())
-                ->select('question_id', DB::raw('AVG(answer) as avarage'))
+                ->select('question_id', DB::raw('AVG(answer) as average'))
                 ->groupBy('question_id')
                 ->get()->toArray();
         });

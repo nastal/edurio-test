@@ -4,7 +4,7 @@ namespace App\Contexts\Answer\AppLayer\Query;
 
 use App\Contexts\Answer\Infrastructure\GraphAnswerRepository;
 
-class AnswerAvarageFinder
+class AnswerAverageFinder
 {
     public function __construct(
         private readonly GraphAnswerRepository $answerRepository,
@@ -13,6 +13,6 @@ class AnswerAvarageFinder
 
     public function execute(): array
     {
-        return $this->answerRepository->getAllGraphAnswersAvarage();
+        return $this->answerRepository->getAllGraphAnswersAverage();
     }
 }

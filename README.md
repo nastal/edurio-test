@@ -22,10 +22,10 @@ ensure your local environment has the following installed:
 
 ### Commands
 - `php artisan word-stats:rebuild` - within container, rebuilds the word stats table
-This command is used after batch process. As also you can rebuild it at any time, as there is no eventual consistency aka event soursing.
+This command is used after batch process. As also you can rebuild it at any time, as there is no eventual consistency aka event sourcing.
 
 ### Web API
-- `GET http://localhost:47000/api/graph/answer-avarage` - Graph questions avarage answers
+- `GET http://localhost:47000/api/graph/answer-average` - Graph questions average answers
 - `GET http://localhost:47000/api/graph/answer-count` - Graph questions answers count
 - `GET http://localhost:47000/api/graph/question-answer/{id}` - Graph question answers by id (todo pagination for large data)
 - `GET http://localhost:47000/api/open/word-stats` - Word cloud (stats)

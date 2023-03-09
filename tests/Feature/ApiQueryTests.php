@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Contexts\Answer\AppLayer\Query\AnswerAvarageFinder;
+use App\Contexts\Answer\AppLayer\Query\AnswerAverageFinder;
 use App\Contexts\Answer\AppLayer\Query\AnswerCountFinder;
 use App\Contexts\Answer\AppLayer\Query\AnswerPerQuestionFinder;
 use App\Contexts\Answer\Domain\Models\GraphAnswer;
@@ -15,7 +15,7 @@ class ApiQueryTests extends TestCase
 {
 
     use DatabaseTransactions;
-    public function test_getQuestionAvarage(): void
+    public function test_getQuestionAverage(): void
     {
 
         $questions = Question::factory()
@@ -29,13 +29,13 @@ class ApiQueryTests extends TestCase
             ]);
         });
 
-        $finder = app()->make(AnswerAvarageFinder::class);
+        $finder = app()->make(AnswerAverageFinder::class);
 
         $results = $finder->execute();
 
         //randomizer avg value is between 2 and 3
-        $this->assertTrue($results[0]->avarage > 2 && $results[0]->avarage < 3);
-        $this->assertTrue($results[1]->avarage > 2 && $results[1]->avarage < 3);
+        $this->assertTrue($results[0]->average > 2 && $results[0]->average < 3);
+        $this->assertTrue($results[1]->average > 2 && $results[1]->average < 3);
 
     }
 
