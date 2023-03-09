@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contexts\Answer\AppLayer\Handlers\FlushGraphCacheHandler;
+use App\Contexts\Answer\Domain\Events\GraphAnswerCreated;
 use App\Contexts\Answer\Domain\Events\OpenAnswerCreated;
 use App\Contexts\WordStat\AppLayer\Handlers\CreateWordStatHandler;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -16,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         OpenAnswerCreated::class => [
             CreateWordStatHandler::class
+        ],
+        GraphAnswerCreated::class => [
+            FlushGraphCacheHandler::class
         ]
     ];
 
