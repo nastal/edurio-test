@@ -39,6 +39,5 @@ class DatabaseSeeder extends Seeder
             'question_id' => $questionsOpen->id
         ]);
 
-        Artisan::call(RebuildWordStatsCommand::class);
     }
 }
